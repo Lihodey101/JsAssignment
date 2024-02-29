@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Replace Plugin",
+  "version": "1.0",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+    ],
+  "background": {
+    "service_worker": "src/background/background.js"
+  },
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "src/images/icon16.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
