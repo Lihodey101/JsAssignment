@@ -46,7 +46,7 @@ chrome.tabs.onActivated.addListener(activeInfo => {
             });
         }
 
-        // Decide on the action based on the extension's enabled state
+        // Pass the correct action based on the extension's enabled state
         if (isExtensionEnabled) {
             sendMessageToContentScript(replaceStr);
         } else if (reloadedTabs[activeInfo.tabId] && !isExtensionEnabled) {
@@ -117,7 +117,7 @@ function sendMessageToTab(tabId, message, retries) {
                console.log("Tab not ready, trying again. Remaining retries:", retries);
                setTimeout(() => sendMessageToTab(tabId, message, retries - 1), 200);
            } else {
-               // Log failure after exhausting retries
+               // Log failure after retries
                console.log("Failed to send message after retries. Tab status:", tab.status);
            }
      });
